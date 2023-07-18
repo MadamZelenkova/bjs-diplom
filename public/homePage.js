@@ -28,7 +28,7 @@ function getRate() {
 }
 
 getRate();
-setInterval(getRate(), 60000);
+setInterval(getRate, 60000);
 
 const moneyManager = new MoneyManager();
 
@@ -86,6 +86,9 @@ favoritesWidget.addUserCallback = function (data) {
       favoritesWidget.clearTable();
       favoritesWidget.fillTable(response.data);
       moneyManager.updateUsersList(response.data);
+      moneyManager.setMessage(true, "Пользователь добавлен в избранное");
+    } else {
+     moneyManager.setMessage(false, response.error); 
     }
   });
 };
@@ -97,6 +100,9 @@ favoritesWidget.removeUserCallback = function (id) {
       favoritesWidget.clearTable();
       favoritesWidget.fillTable(response.data);
       moneyManager.updateUsersList(response.data);
+      moneyManager.setMessage(true, "Пользователь удален из избранного");
+    } else {
+     moneyManager.setMessage(false, response.error); 
     }
   });
 };
